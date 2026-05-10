@@ -65,5 +65,4 @@ RUN echo '<VirtualHost *:80>\n\
 EXPOSE 80
 
 # Start Apache
-CMD ["apache2-foreground"]</content>
-<parameter name="filePath">c:\laragon\www\nash-try-lang\thesis-system\backend\Dockerfile
+CMD ["apache2-foreground"]
