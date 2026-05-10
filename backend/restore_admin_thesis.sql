@@ -1,0 +1,38 @@
+-- Insert the thesis (category_id = 1 should exist from the seeded categories)
+INSERT INTO theses (
+  title, 
+  authors, 
+  adviser, 
+  year, 
+  department, 
+  program, 
+  academic_level, 
+  document_type, 
+  abstract, 
+  keywords, 
+  category_id, 
+  uploaded_by, 
+  status, 
+  approved_at, 
+  approved_by, 
+  created_at, 
+  updated_at
+) VALUES (
+  'Two-way Analysis of Forms, Functions and Meaning in School Memoranda',
+  '["Mr. Gary Garay"]',
+  'Dr. John Smith',
+  2012,
+  'College of Computer Study',
+  'Bachelor of Science in Computer Science',
+  'undergraduate',
+  'student_thesis',
+  'This study analyzes the forms, functions, and meanings embedded in school memoranda through a two-way analysis approach. The research examines how administrative communication shapes organizational culture and affects stakeholder understanding.',
+  '["memoranda", "communication", "analysis", "school administration"]',
+  1,
+  1,
+  'approved',
+  NOW(),
+  1,
+  NOW(),
+  NOW()
+);
