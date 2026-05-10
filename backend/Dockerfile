@@ -34,7 +34,7 @@ COPY --chown=www-data:www-data . /var/www/html
 
 # Install PHP dependencies
 #RUN composer install --optimize-autoloader --no-dev
-RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --optimize-autoloader --no-dev
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-interaction
 
 # Generate application key
 RUN php artisan key:generate
