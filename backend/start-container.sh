@@ -22,6 +22,7 @@ php artisan view:cache
 # Run migrations
 if [ "${RAILPACK_SKIP_MIGRATIONS}" != "true" ]; then
     php artisan migrate --force
+    php artisan db:seed --force
 fi
 
 # Start FrankenPHP
