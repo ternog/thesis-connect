@@ -1,13 +1,11 @@
 services:
   - type: web
     name: thesis-connect-backend
-    env: node
+    runtime: docker
     plan: free
     branch: main
     autoDeploy: true
-    rootDir: backend
-    buildCommand: composer install --optimize-autoloader --no-dev && php artisan key:generate --force
-    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    dockerfilePath: backend/Dockerfile
     envVars:
       - key: APP_ENV
         value: production

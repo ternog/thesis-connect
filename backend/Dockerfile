@@ -14,35 +14,28 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    nodejs \
-    npm
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy existing application directory contents
-COPY backend/ /var/www/html/
-
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data backend/ /var/www/html/
+# Copy composer files first for better caching
+COPY backend/composer.json backend/composer.lock ./
 
 # Install PHP dependencies
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install --optimize-autoloader --no-dev --no-interaction --prefer-dist
 
-# Generate application key
-RUN php artisan key:generate
-
-# Create storage link
-RUN php artisan storage:link
+# Copy application code
+COPY backend/ ./
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Generate application key and create storage link
+RUN php artisan key:generate --force && php artisan storage:link
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
