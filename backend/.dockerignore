@@ -3,12 +3,20 @@ npm-debug.log
 .env
 .env.local
 .env.production
-storage/app/*
-storage/framework/cache/*
-storage/framework/sessions/*
-storage/framework/views/*
-storage/logs/*
+storage/app/public
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+storage/logs
 tests
 .phpunit.result.cache
-vendor</content>
-<parameter name="filePath">c:\laragon\www\nash-try-lang\thesis-system\backend\.dockerignore
+vendor
+.git
+.gitignore
+.github
+README.md
+CHANGELOG.md
+MYSQL_SETUP_GUIDE.md
+*.bat
+*.sh
+*.sql
