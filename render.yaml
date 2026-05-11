@@ -1,7 +1,6 @@
 services:
   - type: web
     name: thesis-connect-backend
-    env: php
     root: backend
     plan: free
     branch: main
