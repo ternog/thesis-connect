@@ -34,7 +34,8 @@ COPY . ./
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Generate application key and create storage link
+# Copy .env example and generate application key
+RUN if [ -f .env.example ]; then cp .env.example .env; fi
 RUN php artisan key:generate --force && php artisan storage:link
 
 # Enable Apache mod_rewrite
